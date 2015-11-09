@@ -1,2 +1,14 @@
 <h1>ItemList#home</h1>
-<p>Find me in app/views/item_list/home.html.erb</p>
+<p><%= @admin.name %></p>
+<table border="1">
+<% @users.each do |user| %>
+	<% user.items.each do |item| %>
+	<tr>
+		<td><%= user.name %></td>
+		<td><%= item.name %></td>
+		<% a = item.categories.map{|a| a.name} %>
+		<td><%= a.inject {|cat, c| cat + ", " + c} %></td>
+	</tr>
+	<% end %>
+<% end %>
+</table>
