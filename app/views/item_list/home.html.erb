@@ -9,7 +9,7 @@
 <% @users.each do |user| %>
 	<% user.items.each do |item| %>
 	<tr>
-		<td><%= user.name %></td>
+		<td><a href="/users/<%= user.id %>"><%= user.name %></a></td>
 		<td><%= item.name %></td>
 		<% a = item.categories.map{|a| a.name} %>
 		<td><%= a.inject {|cat, c| cat + ", " + c} %></td>

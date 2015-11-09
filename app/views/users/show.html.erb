@@ -1,5 +1,23 @@
 <% if @user %>
+<h1>Name: 
 <%= @user.name %>
+</h1>
+<h2>Purchased Items</h2>
+<table border="1">
+<tr>
+	<td>Item Name</td>
+	<td>Item Categories</td>
+</tr>
+<% @purchasedList.each do |purchase| %>
+	<tr>
+		<td><%= purchase.name %></td>
+		<td><%= purchase.categoryList %></td>
+	</tr>
+<% end %>
+</table>
+<h2>Recommended Items</h2>
+<%= @recommended %>
+<%= @userCatFilter %>
 <% else %>
 No User with this id
 <% end %>
