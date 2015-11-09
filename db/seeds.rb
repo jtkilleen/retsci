@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Admin.create!(name: "Jeff Killeen", password: "jeff", password_confirmation: "jeff")
 User.create!(name: "John Smith")
 Item.create!(name: "Adidas Jersey")
 jersey = Item.find_by(name: "Adidas Jersey")

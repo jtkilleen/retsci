@@ -9,13 +9,14 @@ class UsersController < ApplicationController
 			# Only select items that are not in user purchased list
 			@recommended = Item.all.select{|item| !(@user.items.include?(item))}
 			possibilities = @user.items.map{|i| i.categories}
-			userCategories = possibilities.reduce{|a,b| a.concat b}
+			@userCategories = possibilities.reduce{|a,b| a.concat b}
 			# Names of all the categories relating to the users previously purchased items
-			@userCatFilter = userCategories.uniq{|item| item.name}.map{|n| n.name}
+			@userCat = @userCategories.uniq{|item| item.name}
+			@userCatFilter = @userCategories.uniq{|item| item.name}.flatten.map{|n| n.name}
 			@recommended = @recommended.map{|a| ItemCat.new(a.name, a.categories.map{|b| b.name})}
-			# Do an intersection between two sets and check if the length is greater than 0
+			# Do an intersection between two sets and check if they share at least one category
 			@recommended = @recommended.select{|item| (item.categoryList & @userCatFilter).length > 0}
-			# Check to see which items have the greatest intersection
+			# Set precedence based on how many categories are shared
 			@recommended.sort!{|a,b| (b.categoryList & @userCatFilter).length <=> (a.categoryList & @userCatFilter).length}
 			purchased = @user.items
 			@purchasedList = []
