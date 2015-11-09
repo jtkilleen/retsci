@@ -11,13 +11,23 @@
 <% @purchasedList.each do |purchase| %>
 	<tr>
 		<td><%= purchase.name %></td>
-		<td><%= purchase.categoryList %></td>
+		<td><%= purchase.categoryList.inject{|cat1, cat2| cat1 + ", " + cat2} %></td>
 	</tr>
 <% end %>
 </table>
 <h2>Recommended Items</h2>
-<%= @recommended %>
-<%= @userCatFilter %>
+<table border="1">
+<tr>
+	<td>Item Name</td>
+	<td>Item Categories</td>
+</tr>
+<% @recommended.each do |rec| %>
+<tr>
+	<td><%= rec.name %></td>
+	<td><%= rec.categoryList.inject{|cat1, cat2| cat1 + ", " + cat2} %></td>
+</tr>
+<% end%>
+</table>
 <% else %>
 No User with this id
 <% end %>
