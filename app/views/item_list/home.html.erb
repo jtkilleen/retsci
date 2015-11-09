@@ -1,5 +1,6 @@
 <h1>Items Home Page</h1>
-<p>Admin Name: <%= @admin.name %></p>
+<p>Admin Name: <%= @current_admin.name %>
+<%= link_to "Log out", logout_path, method: "delete" %></p>
 <table border="1">
 <tr>
 	<td>User Name</td>
